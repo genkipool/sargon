@@ -1,5 +1,6 @@
 mod interaction_id;
 mod p2p_links;
+mod p2p_transport;
 mod wallet_account;
 mod wallet_interaction;
 mod wallet_persona;
@@ -13,6 +14,7 @@ pub mod prelude {
     pub use crate::interaction_id::*;
     pub use crate::mobile::*;
     pub use crate::p2p_links::*;
+    pub use crate::p2p_transport::*;
     pub use crate::wallet_account::*;
     pub use crate::wallet_interaction::*;
     pub use crate::wallet_persona::*;
