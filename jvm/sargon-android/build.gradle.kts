@@ -92,7 +92,7 @@ android {
 }
 
 cargoNdk {
-    targets = arrayListOf("arm64", "arm", "x86_64", "x86")
+    targets = arrayListOf("arm64", "arm")
     module = "../"
     librariesNames = arrayListOf("libsargon_uniffi.so")
     extraCargoBuildArguments = arrayListOf("--locked", "--all")
