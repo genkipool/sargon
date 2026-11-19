@@ -1,0 +1,27 @@
+# Fork-only check (not part of any pull request): builds Sargon for macOS and runs
+# the Swift tests, as the "test-swift" job of test.yml does, on a standard runner
+# and without the organisation's secrets (no Codecov upload).
+name: Swift check (fork)
+
+on:
+  push:
+    branches:
+      - 'swift-check/**'
+
+jobs:
+  swift-test:
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Xcode
+        run: |
+          ls -d /Applications/Xcode*.app
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)"
+          xcodebuild -version
+      - name: Rust toolchain (rust-toolchain file) for aarch64-apple-darwin
+        run: |
+          rustup show
+          rustup target add aarch64-apple-darwin
+      - name: Build Sargon for macOS and run swift test
+        run: zsh ./scripts/ios/test.sh --build --testonly
